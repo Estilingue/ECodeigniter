@@ -1,0 +1,261 @@
+/** -------------------------------------
+ * UTILITIES
+ *
+ * --------------------------------------
+ */
+.wrap {
+	width: 1040px;
+	height: 100%;
+	margin: 0 auto;
+/* 	border: 1px dashed #999; */
+}
+
+.clear {
+	clear: both;
+}
+
+::selection {
+	background: #32C8DC;
+	color: white;
+	text-shadow: none;
+}
+
+::-moz-selection {
+	background: #32C8DC;
+	color: white;
+	text-shadow: none;
+}
+
+/** -------------------------------------
+ * COLORS
+ *
+ * --------------------------------------
+ */
+@estil_blue: #53a8c4;
+@text_gray: #403a37;
+@dark_gray: @text_gray;
+@gray: #464646;
+
+/** -------------------------------------
+ * FONT FAMILIES
+ *
+ * --------------------------------------
+ */
+@import url(http://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,600,700);
+@import url(http://fonts.googleapis.com/css?family=Asap:400,700,400italic,700italic);
+
+@tt: 'Titillium Web', sans-serif;
+@asap: 'Asap', sans-serif;
+
+
+/** -------------------------------------
+ * GLOBALS
+ *
+ * --------------------------------------
+ */
+ 
+@image_assets: "../../assets/images";
+ 
+body {
+	font-family: @tt;
+	font-size: 100%;
+	color: @text_gray;
+	background: white;
+}
+
+p {font-size: 20px;}
+
+/** -------------------------------------
+ * HEADER
+ *
+ * --------------------------------------
+ */
+header {
+	width: 100%;
+	height: 150px;
+	background: url("@{image_assets}/header_bg.png") @estil_blue repeat-x;
+	position: fixed;
+	top: 0;
+	overflow: hidden;
+	z-index: 1000;
+	
+	h1 {
+		width: 230px;
+		height: 55px;
+		float: left;
+		margin-top: 45px;
+		
+		.logo {
+			display: block;
+			width: 230px;
+			height: 55px;
+			background: url("@{image_assets}/logo.png") transparent no-repeat;
+			text-indent: -99999em;
+		}
+	}
+	
+	@menu_margin_top: 55px;
+	@menu_font_size: 23px;
+	@menu_font_weight: 200;
+	@menu_font_weight_active: 400;
+	
+	.menu {
+		float: left;
+		list-style-type: none;
+		margin-top: @menu_margin_top;
+		margin-left: 40px;
+		
+		li {
+			display: inline;
+			padding: 0px 10px;
+			
+			a {
+				color: white;
+				text-decoration: none;
+				font-size: @menu_font_size;
+				font-weight: @menu_font_weight;
+				text-transform: lowercase;
+				&:hover {
+					color: @estil_blue;
+				}
+			}
+			
+			&.active a {
+				color: @estil_blue;
+				font-weight: 400;
+			}
+		}
+	}
+	
+	.social_menu {
+		float: right;
+		list-style-type: none;
+		margin-top: @menu_margin_top;
+		
+		li {
+			display: inline-table;
+			padding: 0px 8px;
+			
+			a {
+				color: white;
+				text-decoration: none;
+				font-size: @menu_font_size;
+				font-weight: @menu_font_weight;
+				text-transform: lowercase;
+				&:hover {
+					color: @estil_blue;
+				}
+			}
+			
+			&#blog_link {
+				height: 35px;
+			}
+			
+			&#twitter_icon {
+				border-left: 1px solid #ccc;
+				height: 35px;
+				
+				a {
+					width: 35px;
+					height: 35px;
+					display: block;
+					background: url("@{image_assets}/twitter_icons.png") 0 0 no-repeat;
+					text-indent: -99999em;
+					
+					&:hover {
+						background: url("@{image_assets}/twitter_icons.png") 0 -35px no-repeat;
+					}
+				}
+			}
+		}
+	}
+}
+
+/** -------------------------------------
+ * SECTIONS
+ *
+ * --------------------------------------
+ */
+ 
+section {
+	width: 100%;
+	
+	&#oque_e {
+		background: @estil_blue;
+		height: 500px;
+		padding-top: 70px;
+		margin-top: 150px;
+		
+		#idea {
+			float: left;
+		}
+		
+		@lead_left_margin: 60px;
+		
+		h2 {
+			float: left;
+			margin-top: 40px;
+			margin-left: @lead_left_margin;
+		}
+		
+		p.lead_text{margin-top: 20px;}
+		
+		p {
+			float: left;
+			margin-top: 20px;
+			margin-left: @lead_left_margin;
+		}
+		
+		.button {
+			.action_button();
+		}
+	}
+	
+	&#como_funciona {
+		background: url("@{image_assets}/section_arrow.png") @dark_gray top center no-repeat;
+		height: 700px;
+		padding-top: 40px;
+	}
+}
+
+.lead_title {
+	display: block;
+	font-family: @asap;
+	font-size: 62px;
+	font-weight: 700;
+	color: white;
+	text-shadow: 0px -1px 0px #666;
+}
+
+.lead_text {
+	display: block;
+	font-family: @tt;
+	font-size: 25px;
+	font-weight: 600;
+}
+
+.border-radius(@radius: 5px) {
+	border-radius: @radius;
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+}
+
+.action_button(@bg: @gray, @color: white) {
+	@p_x: 90%;
+	@p_y: 30%;
+	
+	background: url("@{image_assets}/button_arrow.png") @bg @p_x @p_y no-repeat;
+	color: @color;
+	padding: 8px 60px 8px 30px;
+	border: none;
+	.border-radius(30px);
+	font-family: @tt;
+	font-size: 16px;
+	font-weight: 300;
+	float: right;
+	cursor: pointer;
+	
+	&:hover {
+		background: url("@{image_assets}/button_arrow.png") (@bg*0.8) @p_x @p_y no-repeat;
+	}
+}
