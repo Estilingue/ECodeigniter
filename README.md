@@ -53,3 +53,66 @@ css_asset('name_of_file');
 ```php
 js_asset('name_of_file');
 ```
+
+##Runaway - Unit Testing Suite
+
+The **Runaway** library is a unit testing framework to test business logic inside models.
+
+**Usage:**
+
+First of all, create a *tests/* directory inside your controllers folder.
+
+```bash
+user@machine:.../application/controllers$ mkdir tests
+```
+
+Then create your tests controllers inside always importing and extending the Runaway library:
+
+```php
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+require(APPPATH . '/libraries/Runaway.php');
+
+class Example_test extends Runaway {
+	
+	public function __construct()
+	{
+		parent::__construct();
+		$this->title = 'Basic Math';
+	}
+	
+	private $a = 5;
+	private $b = 5;
+	
+	public function test_adition()
+	{	
+		$this->assert_equals($this->a + $this->b, 10);
+	}
+	
+	public function test_subtraction()
+	{	
+		$this->assert_equals($this->a - $this->b, 0);
+	}
+	
+}
+?>
+```
+
+After you create the tests for this controller you can call on command line:
+
+```bash
+user@machine:.../project$ php index.php tests/example_test
+```
+
+***response:***
+
+```bash
+######### Runaway Suite: Running Tests #########
+Model: Basic Math
+
+* test_adition: test passed
+
+* test_subtraction: test passed
+
+######### Ended Tests #########
+```
